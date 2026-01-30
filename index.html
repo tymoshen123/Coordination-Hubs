@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Координаційні Хаби України</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .button-group {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hub-button {
+      padding: 12px 20px;
+      margin: 5px;
+      border: 2px solid #888;
+      border-radius: 10px;
+      background-color: #eee;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .hub-button.active {
+      background-color: #c5e1a5;
+      border-color: #4caf50;
+    }
+
+    .hub-image {
+      display: none;
+      max-width: 100%;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+
+    .hub-image.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Координаційні Хаби України</h1>
+
+  <div class="button-group">
+    <button class="hub-button active" data-map="national">National Level</button>
+    <button class="hub-button" data-map="centerwest">Center & West Hub</button>
+    <button class="hub-button" data-map="east">East Hub</button>
+    <button class="hub-button" data-map="south">South Hub</button>
+  </div>
+
+  <!-- Карти -->
+  <img id="national" class="hub-image active" src="national.png" alt="National Level Map">
+  <img id="centerwest" class="hub-image" src="centerwest.png" alt="Center & West Hub Map">
+  <img id="east" class="hub-image" src="east.png" alt="East Hub Map">
+  <img id="south" class="hub-image" src="south.png" alt="South Hub Map">
+
+  <script>
+    const buttons = document.querySelectorAll('.hub-button');
+    const maps = document.querySelectorAll('.hub-image');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedMap = button.getAttribute('data-map');
+
+        // Активна кнопка
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Показати відповідну карту
+        maps.forEach(map => map.classList.remove('active'));
+        document.getElementById(selectedMap).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
